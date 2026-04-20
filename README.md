@@ -31,6 +31,71 @@
 
 ---
 
+## 📸 Screenshots & Demo
+
+### Login Page
+![Login Page](https://via.placeholder.com/800x600/4CAF50/FFFFFF?text=EMS+Login+Page)
+*Secure authentication with JWT tokens and role-based access control*
+
+### Dashboard Overview
+![Dashboard](https://via.placeholder.com/800x600/2196F3/FFFFFF?text=EMS+Dashboard)
+*Real-time analytics dashboard with employee statistics and trends*
+
+### Employee Management
+![Employee Management](https://via.placeholder.com/800x600/FF9800/FFFFFF?text=Employee+Management)
+*Complete CRUD operations with advanced filtering and search capabilities*
+
+### Employee Table View
+![Employee Table](https://via.placeholder.com/800x600/9C27B0/FFFFFF?text=Employee+Table+View)
+*Data grid with pagination, sorting, and bulk operations*
+
+### Add/Edit Employee Form
+![Employee Form](https://via.placeholder.com/800x600/607D8B/FFFFFF?text=Employee+Form)
+*Responsive form with validation and error handling*
+
+### Analytics & Charts
+![Analytics](https://via.placeholder.com/800x600/3F51B5/FFFFFF?text=Analytics+Charts)
+*Interactive charts showing employee distribution and performance metrics*
+
+### Mobile Responsive Design
+![Mobile View](https://via.placeholder.com/400x600/4CAF50/FFFFFF?text=Mobile+Responsive)
+*Fully responsive design optimized for mobile and tablet devices*
+
+### Data Export Feature
+![Export CSV](https://via.placeholder.com/800x600/FF5722/FFFFFF?text=CSV+Export)
+*Export employee data to CSV format for reporting and analysis*
+
+---
+
+## 🎬 Demo Video
+
+[![EMS Demo Video](https://img.youtube.com/vi/placeholder/0.jpg)](https://www.youtube.com/watch?v=placeholder)
+*Click to watch a complete walkthrough of the EMS application features*
+
+---
+
+## 🖥️ Live Demo
+
+**🚀 [Try the Live Demo](https://ems-demo.example.com)**
+
+*Username:* demo@example.com  
+*Password:* demo123
+
+---
+
+## 📱 Features Showcase
+
+| Feature | Screenshot | Description |
+|---------|------------|-------------|
+| **Authentication** | ![Auth](https://via.placeholder.com/200x150/4CAF50/FFFFFF?text=Auth) | JWT-based secure login with role management |
+| **Dashboard** | ![Dashboard](https://via.placeholder.com/200x150/2196F3/FFFFFF?text=Dashboard) | Real-time analytics and statistics |
+| **Employee CRUD** | ![CRUD](https://via.placeholder.com/200x150/FF9800/FFFFFF?text=CRUD) | Full create, read, update, delete operations |
+| **Data Export** | ![Export](https://via.placeholder.com/200x150/9C27B0/FFFFFF?text=Export) | CSV export functionality |
+| **Responsive UI** | ![Mobile](https://via.placeholder.com/200x150/607D8B/FFFFFF?text=Mobile) | Mobile-first responsive design |
+| **Charts & Analytics** | ![Charts](https://via.placeholder.com/200x150/3F51B5/FFFFFF?text=Charts) | Interactive data visualizations |
+
+---
+
 ## Overview
 
 **EMS** is a production-ready enterprise management system built with a modern tech stack. It provides:
