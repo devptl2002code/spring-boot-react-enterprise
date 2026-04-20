@@ -13,7 +13,7 @@ export const createAppTheme = (mode: PaletteMode) => {
         contrastText: "#ffffff",
       },
       secondary: {
-        main: "#ea580c",       // Orange
+        main: "#E38E44",       // Orange
         light: "#fb923c",
         dark: "#c2410c",
         contrastText: "#ffffff",
@@ -114,15 +114,15 @@ export const createAppTheme = (mode: PaletteMode) => {
                 borderColor: isLight ? "#cbd5e1" : "#475569",
               },
               "&:hover fieldset": {
-                borderColor: "#ea580c",
+                borderColor: "#E38E44",
               },
               "&.Mui-focused fieldset": {
-                borderColor: "#ea580c",
+                borderColor: "#E38E44",
               },
             },
             "& .MuiInputLabel-root": {
               color: isLight ? "#475569" : "#94a3b8",
-              "&.Mui-focused": { color: "#ea580c" },
+              "&.Mui-focused": { color: "#E38E44" },
             },
             "& .MuiSelect-icon": {
               color: isLight ? "#475569" : "#94a3b8",
@@ -140,7 +140,7 @@ export const createAppTheme = (mode: PaletteMode) => {
             borderRadius: 8,
           },
           containedPrimary: {
-            backgroundColor: "#ea580c",
+            backgroundColor: "#E38E44",
             color: "#ffffff",
             boxShadow: "0 4px 14px rgba(234,88,12,0.35)",
             "&:hover": {
@@ -152,8 +152,8 @@ export const createAppTheme = (mode: PaletteMode) => {
             borderColor: isLight ? "#cbd5e1" : "#334155",
             color: isLight ? "#475569" : "#94a3b8",
             "&:hover": {
-              borderColor: "#ea580c",
-              color: "#ea580c",
+              borderColor: "#E38E44",
+              color: "#E38E44",
               backgroundColor: "rgba(234,88,12,0.06)",
             },
           },
@@ -210,7 +210,7 @@ export const createAppTheme = (mode: PaletteMode) => {
               color: "#ffffff",
             },
             "&.Mui-selected": {
-              backgroundColor: "#ea580c",
+              backgroundColor: "#E38E44",
               color: "#ffffff",
               "&:hover": { backgroundColor: "#c2410c" },
             },
