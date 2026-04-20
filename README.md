@@ -34,36 +34,22 @@
 ## 📸 Screenshots & Demo
 
 ### Login Page
-![Login Page](https://via.placeholder.com/800x600/4CAF50/FFFFFF?text=EMS+Login+Page)
+<img width="1919" height="1041" alt="Screenshot 2026-04-20 110405" src="https://github.com/user-attachments/assets/b7898f8c-b7fb-4f9f-9768-1770e0085c8c" />
 *Secure authentication with JWT tokens and role-based access control*
 
 ### Dashboard Overview
-![Dashboard](https://via.placeholder.com/800x600/2196F3/FFFFFF?text=EMS+Dashboard)
+<img width="1919" height="1042" alt="Screenshot 2026-04-20 110420" src="https://github.com/user-attachments/assets/86bc97e1-0099-4041-a756-6bfee25f83e2" />
 *Real-time analytics dashboard with employee statistics and trends*
 
-### Employee Management
-![Employee Management](https://via.placeholder.com/800x600/FF9800/FFFFFF?text=Employee+Management)
-*Complete CRUD operations with advanced filtering and search capabilities*
-
 ### Employee Table View
-![Employee Table](https://via.placeholder.com/800x600/9C27B0/FFFFFF?text=Employee+Table+View)
+<img width="1918" height="1040" alt="Screenshot 2026-04-20 110432" src="https://github.com/user-attachments/assets/61d86a00-6115-416c-bad7-943e4cadd2ca" />
+<img width="1919" height="994" alt="Screenshot 2026-04-20 110512" src="https://github.com/user-attachments/assets/ead29e4c-9022-4ab3-a77c-22ff17cecae2" />
 *Data grid with pagination, sorting, and bulk operations*
 
 ### Add/Edit Employee Form
-![Employee Form](https://via.placeholder.com/800x600/607D8B/FFFFFF?text=Employee+Form)
+<img width="1919" height="1042" alt="Screenshot 2026-04-20 110439" src="https://github.com/user-attachments/assets/61b2ee53-75f3-447a-b88d-de6fde780295" />
+<img width="1919" height="1040" alt="Screenshot 2026-04-20 110449" src="https://github.com/user-attachments/assets/bca29977-262f-43d4-b706-61f152e785dd" />
 *Responsive form with validation and error handling*
-
-### Analytics & Charts
-![Analytics](https://via.placeholder.com/800x600/3F51B5/FFFFFF?text=Analytics+Charts)
-*Interactive charts showing employee distribution and performance metrics*
-
-### Mobile Responsive Design
-![Mobile View](https://via.placeholder.com/400x600/4CAF50/FFFFFF?text=Mobile+Responsive)
-*Fully responsive design optimized for mobile and tablet devices*
-
-### Data Export Feature
-![Export CSV](https://via.placeholder.com/800x600/FF5722/FFFFFF?text=CSV+Export)
-*Export employee data to CSV format for reporting and analysis*
 
 ---
 
