@@ -1,0 +1,62 @@
+Act as a senior React architect.
+
+I want to create a production-ready React project using:
+
+- React + TypeScript
+- Vite
+- Feature-based folder structure
+- Clean architecture principles
+- Industry best practices
+
+Generate:
+
+1. Complete scalable folder structure (feature-based)
+2. Setup with:
+   - Absolute imports
+   - ESLint + Prettier
+   - Environment configuration
+3. Axios instance with interceptors
+4. AuthContext with optimized pattern
+5. Custom hooks pattern example
+6. Protected route setup
+7. Example feature module (CRUD structure)
+8. Reusable UI component structure
+9. State management recommendation (Context vs Redux)
+10. Best practices for large-scale apps
+
+Project type: [Describe your project here]
+Authentication type: [JWT / OAuth / None]
+State complexity: [Simple / Medium / Complex]
+
+Generate architecture explanation with code examples.
+Follow senior-level mindset.
+Avoid beginner-level structure.
+
+
+************************************************************************************
+
+Act as a senior frontend architect working in a large-scale enterprise.
+
+Design a scalable React + TypeScript project architecture for:
+
+[Your project name]
+
+Requirements:
+- Feature-based modular structure
+- Strict TypeScript typing
+- Separation of concerns (UI, hooks, services, types)
+- Auth system with Context
+- API layer abstraction
+- Environment configuration
+- Error handling strategy
+- Global loading handling
+- Role-based access control
+- Performance optimization practices
+- Code splitting and lazy loading
+- Folder structure explanation
+
+Explain reasoning behind every architectural decision.
+Think long-term scalability (2+ years growth).
+Avoid prop drilling.
+Avoid anti-patterns.
+Follow modern React 18 standards.
