@@ -51,37 +51,6 @@
 <img width="1919" height="1040" alt="Screenshot 2026-04-20 110449" src="https://github.com/user-attachments/assets/bca29977-262f-43d4-b706-61f152e785dd" />
 *Responsive form with validation and error handling*
 
----
-
-## 🎬 Demo Video
-
-[![EMS Demo Video](https://img.youtube.com/vi/placeholder/0.jpg)](https://www.youtube.com/watch?v=placeholder)
-*Click to watch a complete walkthrough of the EMS application features*
-
----
-
-## 🖥️ Live Demo
-
-**🚀 [Try the Live Demo](https://ems-demo.example.com)**
-
-*Username:* demo@example.com  
-*Password:* demo123
-
----
-
-## 📱 Features Showcase
-
-| Feature | Screenshot | Description |
-|---------|------------|-------------|
-| **Authentication** | ![Auth](https://via.placeholder.com/200x150/4CAF50/FFFFFF?text=Auth) | Session-based secure login with role management |
-| **Dashboard** | ![Dashboard](https://via.placeholder.com/200x150/2196F3/FFFFFF?text=Dashboard) | Real-time analytics and statistics |
-| **Employee CRUD** | ![CRUD](https://via.placeholder.com/200x150/FF9800/FFFFFF?text=CRUD) | Full create, read, update, delete operations |
-| **Data Export** | ![Export](https://via.placeholder.com/200x150/9C27B0/FFFFFF?text=Export) | CSV export functionality |
-| **Responsive UI** | ![Mobile](https://via.placeholder.com/200x150/607D8B/FFFFFF?text=Mobile) | Mobile-first responsive design |
-| **Charts & Analytics** | ![Charts](https://via.placeholder.com/200x150/3F51B5/FFFFFF?text=Charts) | Interactive data visualizations |
-
----
-
 ## Overview
 
 **EMS** is a production-ready enterprise management system built with a modern tech stack. It provides:
