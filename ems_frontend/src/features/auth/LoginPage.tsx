@@ -8,8 +8,8 @@ import {
   Typography,
   CircularProgress,
 } from "@mui/material";
-import { useLogin } from "../hooks/useLogin";
-import { useAuth } from "../hooks/useAuth";
+import { useLogin } from "./useLogin";
+import { useAuth } from "./useAuth";
 import { useNavigate } from "react-router-dom";
 
 export const LoginPage = () => {
@@ -32,7 +32,7 @@ export const LoginPage = () => {
   const handleSubmit = () => {
     mutate(form, {
       onSuccess: (data) => {
-        login(data.token);
+        login(data);
         navigate("/");
       },
     });

@@ -1,4 +1,4 @@
-import { api } from "@core/api/axios";
+import { api } from "@core/api";
 import { EmployeeStats } from "./dashboard.types";
 import { Employee } from "../employees/employees.types";
 

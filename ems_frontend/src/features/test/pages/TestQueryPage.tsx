@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { api } from "@core/api/axios";
+import { api } from "@core/api";
 
 export const TestQueryPage = () => {
   const { data, isLoading, error } = useQuery({

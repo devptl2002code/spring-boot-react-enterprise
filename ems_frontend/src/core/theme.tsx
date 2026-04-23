@@ -1,4 +1,5 @@
-import { createTheme, PaletteMode } from "@mui/material";
+import { createTheme, PaletteMode, ThemeProvider as MuiThemeProvider } from "@mui/material";
+import { createContext, useContext, useMemo, useState, ReactNode } from "react";
 
 export const createAppTheme = (mode: PaletteMode) => {
   const isLight = mode === "light";
@@ -7,28 +8,28 @@ export const createAppTheme = (mode: PaletteMode) => {
     palette: {
       mode,
       primary: {
-        main: "#285075",       // Navy blue
+        main: "#285075",
         light: "#3b82f6",
         dark: "#1e40af",
         contrastText: "#ffffff",
       },
       secondary: {
-        main: "#E38E44",       // Orange
+        main: "#E38E44",
         light: "#fb923c",
         dark: "#c2410c",
         contrastText: "#ffffff",
       },
       background: {
         default: isLight ? "#f1f5f9" : "#0f172a",
-        paper:   isLight ? "#ffffff" : "#1e293b",
+        paper: isLight ? "#ffffff" : "#1e293b",
       },
       text: {
-        primary:   isLight ? "#0f172a" : "#f1f5f9",
+        primary: isLight ? "#0f172a" : "#f1f5f9",
         secondary: isLight ? "#475569" : "#cbd5e1",
       },
       divider: isLight ? "#e2e8f0" : "#334155",
       grey: {
-        50:  "#f8fafc",
+        50: "#f8fafc",
         100: "#f1f5f9",
         200: "#e2e8f0",
         300: "#cbd5e1",
@@ -44,17 +45,16 @@ export const createAppTheme = (mode: PaletteMode) => {
     typography: {
       fontFamily: '"Inter", "Roboto", "Helvetica", "Arial", sans-serif',
       h1: { fontSize: "2.5rem", fontWeight: 700 },
-      h2: { fontSize: "2rem",   fontWeight: 700 },
-      h3: { fontSize: "1.75rem",fontWeight: 700 },
+      h2: { fontSize: "2rem", fontWeight: 700 },
+      h3: { fontSize: "1.75rem", fontWeight: 700 },
       h4: { fontSize: "1.5rem", fontWeight: 700 },
-      h5: { fontSize: "1.25rem",fontWeight: 600 },
-      h6: { fontSize: "1.125rem",fontWeight: 600 },
+      h5: { fontSize: "1.25rem", fontWeight: 600 },
+      h6: { fontSize: "1.125rem", fontWeight: 600 },
     },
 
     shape: { borderRadius: 10 },
 
     components: {
-      // ── AppBar ──────────────────────────────────────────────────────
       MuiAppBar: {
         styleOverrides: {
           root: {
@@ -66,8 +66,6 @@ export const createAppTheme = (mode: PaletteMode) => {
           },
         },
       },
-
-      // ── Drawer ──────────────────────────────────────────────────────
       MuiDrawer: {
         styleOverrides: {
           paper: {
@@ -80,8 +78,6 @@ export const createAppTheme = (mode: PaletteMode) => {
           },
         },
       },
-
-      // ── Card ────────────────────────────────────────────────────────
       MuiCard: {
         styleOverrides: {
           root: {
@@ -93,8 +89,6 @@ export const createAppTheme = (mode: PaletteMode) => {
           },
         },
       },
-
-      // ── Paper ───────────────────────────────────────────────────────
       MuiPaper: {
         styleOverrides: {
           root: {
@@ -102,8 +96,6 @@ export const createAppTheme = (mode: PaletteMode) => {
           },
         },
       },
-
-      // ── TextField ───────────────────────────────────────────────────
       MuiTextField: {
         styleOverrides: {
           root: {
@@ -130,8 +122,6 @@ export const createAppTheme = (mode: PaletteMode) => {
           },
         },
       },
-
-      // ── Button ──────────────────────────────────────────────────────
       MuiButton: {
         styleOverrides: {
           root: {
@@ -159,8 +149,6 @@ export const createAppTheme = (mode: PaletteMode) => {
           },
         },
       },
-
-      // ── IconButton ──────────────────────────────────────────────────
       MuiIconButton: {
         styleOverrides: {
           root: {
@@ -168,8 +156,6 @@ export const createAppTheme = (mode: PaletteMode) => {
           },
         },
       },
-
-      // ── Table ───────────────────────────────────────────────────────
       MuiTableCell: {
         styleOverrides: {
           root: {
@@ -197,8 +183,6 @@ export const createAppTheme = (mode: PaletteMode) => {
           },
         },
       },
-
-      // ── ListItemButton (Drawer nav) ──────────────────────────────────
       MuiListItemButton: {
         styleOverrides: {
           root: {
@@ -217,15 +201,11 @@ export const createAppTheme = (mode: PaletteMode) => {
           },
         },
       },
-
-      // ── Chip ────────────────────────────────────────────────────────
       MuiChip: {
         styleOverrides: {
           root: { fontWeight: 600, fontSize: 11 },
         },
       },
-
-      // ── Dialog ──────────────────────────────────────────────────────
       MuiDialog: {
         styleOverrides: {
           paper: {
@@ -240,5 +220,38 @@ export const createAppTheme = (mode: PaletteMode) => {
   });
 };
 
-// Default export (dark) kept for backward compat during migration
 export const theme = createAppTheme("dark");
+
+interface ThemeContextType {
+  mode: PaletteMode;
+  toggleTheme: () => void;
+}
+
+const ThemeContext = createContext<ThemeContextType>({
+  mode: "light",
+  toggleTheme: () => {},
+});
+
+export const useThemeMode = () => useContext(ThemeContext);
+
+export const ThemeProvider = ({ children }: { children: ReactNode }) => {
+  const [mode, setMode] = useState<PaletteMode>(() => {
+    return (localStorage.getItem("themeMode") as PaletteMode) ?? "light";
+  });
+
+  const toggleTheme = () => {
+    setMode((prev) => {
+      const next = prev === "light" ? "dark" : "light";
+      localStorage.setItem("themeMode", next);
+      return next;
+    });
+  };
+
+  const muiTheme = useMemo(() => createAppTheme(mode), [mode]);
+
+  return (
+    <ThemeContext.Provider value={{ mode, toggleTheme }}>
+      <MuiThemeProvider theme={muiTheme}>{children}</MuiThemeProvider>
+    </ThemeContext.Provider>
+  );
+};

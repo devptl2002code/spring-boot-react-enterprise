@@ -1,0 +1,268 @@
+[
+  {
+    "firstName": "Grace",
+    "lastName": "White",
+    "email": "grace.white1@company.com",
+    "department": "Product",
+    "salary": 72316.2
+  },
+  {
+    "firstName": "Jack",
+    "lastName": "Martinez",
+    "email": "jack.martinez2@company.com",
+    "department": "HR",
+    "salary": 59320.3
+  },
+  {
+    "firstName": "Noah",
+    "lastName": "Johnson",
+    "email": "noah.johnson3@company.com",
+    "department": "Finance",
+    "salary": 129068.5
+  },
+  {
+    "firstName": "Olivia",
+    "lastName": "Johnson",
+    "email": "olivia.johnson4@company.com",
+    "department": "Customer Support",
+    "salary": 81945.4
+  },
+  {
+    "firstName": "Alexander",
+    "lastName": "Rodriguez",
+    "email": "alexander.rodriguez5@company.com",
+    "department": "IT",
+    "salary": 97462.6
+  },
+  {
+    "firstName": "James",
+    "lastName": "Harris",
+    "email": "james.harris6@company.com",
+    "department": "Sales",
+    "salary": 115920.0
+  },
+  {
+    "firstName": "Elizabeth",
+    "lastName": "Moore",
+    "email": "elizabeth.moore7@company.com",
+    "department": "Finance",
+    "salary": 107072.9
+  },
+  {
+    "firstName": "Alice",
+    "lastName": "Brown",
+    "email": "alice.brown8@company.com",
+    "department": "Research",
+    "salary": 85140.9
+  },
+  {
+    "firstName": "Ava",
+    "lastName": "Perez",
+    "email": "ava.perez9@company.com",
+    "department": "Sales",
+    "salary": 74682.0
+  },
+  {
+    "firstName": "Elizabeth",
+    "lastName": "Rodriguez",
+    "email": "elizabeth.rodriguez10@company.com",
+    "department": "Operations",
+    "salary": 73738.5
+  },
+  {
+    "firstName": "Amelia",
+    "lastName": "White",
+    "email": "amelia.white11@company.com",
+    "department": "Finance",
+    "salary": 119778.8
+  },
+  {
+    "firstName": "David",
+    "lastName": "Brown",
+    "email": "david.brown12@company.com",
+    "department": "Procurement",
+    "salary": 103900.6
+  },
+  {
+    "firstName": "Abigail",
+    "lastName": "Gonzalez",
+    "email": "abigail.gonzalez13@company.com",
+    "department": "IT",
+    "salary": 110449.1
+  },
+  {
+    "firstName": "Elizabeth",
+    "lastName": "Johnson",
+    "email": "elizabeth.johnson14@company.com",
+    "department": "Marketing",
+    "salary": 88998.3
+  },
+  {
+    "firstName": "Benjamin",
+    "lastName": "Anderson",
+    "email": "benjamin.anderson15@company.com",
+    "department": "Product",
+    "salary": 129568.1
+  },
+  {
+    "firstName": "Henry",
+    "lastName": "Lee",
+    "email": "henry.lee16@company.com",
+    "department": "Marketing",
+    "salary": 97358.4
+  },
+  {
+    "firstName": "Evelyn",
+    "lastName": "Smith",
+    "email": "evelyn.smith17@company.com",
+    "department": "Legal",
+    "salary": 109838.4
+  },
+  {
+    "firstName": "Abigail",
+    "lastName": "Lee",
+    "email": "abigail.lee18@company.com",
+    "department": "Finance",
+    "salary": 52317.0
+  },
+  {
+    "firstName": "Noah",
+    "lastName": "White",
+    "email": "noah.white19@company.com",
+    "department": "Customer Support",
+    "salary": 97385.4
+  },
+  {
+    "firstName": "Harper",
+    "lastName": "Davis",
+    "email": "harper.davis20@company.com",
+    "department": "Design",
+    "salary": 53040.8
+  },
+  {
+    "firstName": "Olivia",
+    "lastName": "Taylor",
+    "email": "olivia.taylor21@company.com",
+    "department": "Engineering",
+    "salary": 66710.8
+  },
+  {
+    "firstName": "Benjamin",
+    "lastName": "Harris",
+    "email": "benjamin.harris22@company.com",
+    "department": "Legal",
+    "salary": 70452.7
+  },
+  {
+    "firstName": "Evelyn",
+    "lastName": "Rodriguez",
+    "email": "evelyn.rodriguez23@company.com",
+    "department": "Operations",
+    "salary": 74087.6
+  },
+  {
+    "firstName": "Bob",
+    "lastName": "Martinez",
+    "email": "bob.martinez24@company.com",
+    "department": "Design",
+    "salary": 83931.4
+  },
+  {
+    "firstName": "Daniel",
+    "lastName": "Perez",
+    "email": "daniel.perez25@company.com",
+    "department": "Marketing",
+    "salary": 107801.2
+  },
+  {
+    "firstName": "Henry",
+    "lastName": "Lopez",
+    "email": "henry.lopez26@company.com",
+    "department": "Design",
+    "salary": 97527.7
+  },
+  {
+    "firstName": "Elijah",
+    "lastName": "Smith",
+    "email": "elijah.smith27@company.com",
+    "department": "Procurement",
+    "salary": 59912.7
+  },
+  {
+    "firstName": "Jane",
+    "lastName": "Johnson",
+    "email": "jane.johnson28@company.com",
+    "department": "Finance",
+    "salary": 121252.2
+  },
+  {
+    "firstName": "Liam",
+    "lastName": "Smith",
+    "email": "liam.smith29@company.com",
+    "department": "Operations",
+    "salary": 132586.4
+  },
+  {
+    "firstName": "Noah",
+    "lastName": "Smith",
+    "email": "noah.smith30@company.com",
+    "department": "Procurement",
+    "salary": 130996.2
+  },
+  {
+    "firstName": "Alice",
+    "lastName": "Taylor",
+    "email": "alice.taylor31@company.com",
+    "department": "Legal",
+    "salary": 95261.9
+  },
+  {
+    "firstName": "Olivia",
+    "lastName": "Harris",
+    "email": "olivia.harris32@company.com",
+    "department": "Procurement",
+    "salary": 109975.7
+  },
+  {
+    "firstName": "Alice",
+    "lastName": "Thompson",
+    "email": "alice.thompson33@company.com",
+    "department": "Operations",
+    "salary": 105244.2
+  },
+  {
+    "firstName": "John",
+    "lastName": "Anderson",
+    "email": "john.anderson34@company.com",
+    "department": "Product",
+    "salary": 86891.2
+  },
+  {
+    "firstName": "John",
+    "lastName": "Brown",
+    "email": "john.brown35@company.com",
+    "department": "Customer Support",
+    "salary": 74994.6
+  },
+  {
+    "firstName": "Emily",
+    "lastName": "Thompson",
+    "email": "emily.thompson36@company.com",
+    "department": "Finance",
+    "salary": 128059.5
+  },
+  {
+    "firstName": "Diana",
+    "lastName": "Davis",
+    "email": "diana.davis37@company.com",
+    "department": "Research",
+    "salary": 48235.6
+  },
+  {
+    "firstName": "James",
+    "lastName": "Garcia",
+    "email": "james.garcia38@company.com",
+    "department": "Research",
+    "salary": 92018.5
+  }
+]

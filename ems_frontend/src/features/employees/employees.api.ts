@@ -1,4 +1,4 @@
-import { api } from "@core/api/axios";
+import { api } from "@core/api";
 import { Employee, CreateEmployeeDto } from "./employees.types";
 
 export const getEmployees = async (): Promise<Employee[]> => {
