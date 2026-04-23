@@ -1,4 +1,4 @@
-export type Role = "ROLE_ADMIN" | "ROLE_DEV" | "ROLE_HR";
+export type Role = "ROLE_ADMIN" | "ROLE_DEV" | "ROLE_HR" | "ROLE_USER";
 
 export interface AuthResponse {
   username: string;

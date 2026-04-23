@@ -21,6 +21,7 @@ public class UserConfig {
         users.put("admin", new User(1L, "admin", passwordEncoder.encode("admin"), Role.ADMIN));
         users.put("dev", new User(2L, "dev", passwordEncoder.encode("dev"), Role.DEV));
         users.put("hr", new User(3L, "hr", passwordEncoder.encode("hr"), Role.HR));
+        users.put("user", new User(4L, "user", passwordEncoder.encode("user"), Role.USER));
 
         return username -> {
             User user = users.get(username);
