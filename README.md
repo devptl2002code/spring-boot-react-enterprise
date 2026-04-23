@@ -1,6 +1,6 @@
 # 🏢 Enterprise Management System (EMS)
 
-> A modern, full-stack enterprise application for managing employees with role-based access control, JWT authentication, and real-time analytics.
+> A modern, full-stack enterprise application for managing employees with role-based access control, session-based authentication, and real-time analytics.
 
 ![License](https://img.shields.io/badge/license-MIT-blue)
 ![Java](https://img.shields.io/badge/Java-17-orange)
@@ -35,7 +35,7 @@
 
 ### Login Page
 <img width="1919" height="1041" alt="Screenshot 2026-04-20 110405" src="https://github.com/user-attachments/assets/b7898f8c-b7fb-4f9f-9768-1770e0085c8c" />
-*Secure authentication with JWT tokens and role-based access control*
+*Secure authentication with session-based login and role-based access control*
 
 ### Dashboard Overview
 <img width="1919" height="1042" alt="Screenshot 2026-04-20 110420" src="https://github.com/user-attachments/assets/86bc97e1-0099-4041-a756-6bfee25f83e2" />
@@ -73,7 +73,7 @@
 
 | Feature | Screenshot | Description |
 |---------|------------|-------------|
-| **Authentication** | ![Auth](https://via.placeholder.com/200x150/4CAF50/FFFFFF?text=Auth) | JWT-based secure login with role management |
+| **Authentication** | ![Auth](https://via.placeholder.com/200x150/4CAF50/FFFFFF?text=Auth) | Session-based secure login with role management |
 | **Dashboard** | ![Dashboard](https://via.placeholder.com/200x150/2196F3/FFFFFF?text=Dashboard) | Real-time analytics and statistics |
 | **Employee CRUD** | ![CRUD](https://via.placeholder.com/200x150/FF9800/FFFFFF?text=CRUD) | Full create, read, update, delete operations |
 | **Data Export** | ![Export](https://via.placeholder.com/200x150/9C27B0/FFFFFF?text=Export) | CSV export functionality |
@@ -88,7 +88,7 @@
 
 - 👤 **Employee Management**: Create, read, update, delete employee records
 - 🔐 **Role-Based Access Control (RBAC)**: Admin and User roles with different permissions
-- 🔑 **JWT Authentication**: Secure token-based authentication
+- 🔑 **Session-Based Authentication**: Secure session-based authentication
 - 📊 **Dashboard & Analytics**: Real-time employee statistics and trends
 - 📈 **Data Export**: Export employee data in CSV format
 - 🎨 **Responsive UI**: Mobile-first design with Material-UI
@@ -114,7 +114,7 @@
 ┌─────────────────────────────────────────────────────────────────────┐
 │                    API Gateway & Security Layer                      │
 │  ┌──────────────────────────────────────────────────────────────┐   │
-│  │  JWT Filter | CORS Config | Security Config                 │   │
+│  │  Session Management | CORS Config | Security Config        │   │
 │  └──────────────────────────────────────────────────────────────┘   │
 └─────────────────────────────────────────────────────────────────────┘
                                   ↓
@@ -124,7 +124,7 @@
 │  │  Controllers: Auth | Employee                               │   │
 │  │  Services: EmployeeService | AuthService                    │   │
 │  │  Repositories: EmployeeRepository | UserRepository          │   │
-│  │  Security: JwtUtil | JwtFilter | SecurityConfig             │   │
+│  │  Security: SecurityConfig                                   │   │
 │  └──────────────────────────────────────────────────────────────┘   │
 └─────────────────────────────────────────────────────────────────────┘
                                   ↓ JPA/Hibernate
@@ -157,16 +157,15 @@
         │                         │                            │
         │                         │←── User Found ────────────│
         │                         │                            │
-        │                         │─ Validate Password & JWT ─│
+        │                         │─ Validate Password ───────│
         │                         │                            │
-        │←─ JWT Token + Refresh ─│                            │
-        │                         │                            │
-        │─ Store Token (Storage) │                            │
+        │←─ Session Created ──────│                            │
+        │  (Session Cookie)        │                            │
         │                         │                            │
         │─ Next API Request ─────→│                            │
-        │  (+ Authorization Header)                            │
+        │  (+ Session Cookie)      │                            │
         │                         │                            │
-        │                         │─ Verify JWT ──────────────│
+        │                         │─ Verify Session ──────────│
         │                         │                            │
         │←───── Response ────────│                            │
         │                         │                            │
@@ -206,10 +205,6 @@ spring-boot-react-enterprise/
 │   │   │   │   ├── User.java
 │   │   │   │   ├── Role.java
 │   │   │   │   └── EmployeeStats.java
-│   │   │   │
-│   │   │   ├── Security/                 # Security Components
-│   │   │   │   ├── JwtUtil.java          # JWT Token Management
-│   │   │   │   └── JwtFilter.java        # JWT Request Filter
 │   │   │   │
 │   │   │   └── EmsBackendApplication.java # Main Application Class
 │   │   │

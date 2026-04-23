@@ -1,17 +1,17 @@
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ThemeProvider } from "@mui/material";
+import { ThemeProvider } from "@core/theme";
 import { ReactNode } from "react";
-import { theme } from "@core/theme/theme";
-import { AuthProvider } from "@features/auth/context/AuthContext";
-
-const queryClient = new QueryClient();
+import { AuthProvider } from "@features/auth/AuthContext";
+import { QueryProvider } from "./providers/QueryProvider";
+import { SnackbarProvider } from "./providers/SnackbarProvider";
 
 export const AppProviders = ({ children }: { children: ReactNode }) => {
   return (
-    <QueryClientProvider client={queryClient}>
-      <ThemeProvider theme={theme}>
-        <AuthProvider>{children}</AuthProvider>
+    <QueryProvider>
+      <ThemeProvider>
+        <AuthProvider>
+          <SnackbarProvider>{children}</SnackbarProvider>
+        </AuthProvider>
       </ThemeProvider>
-    </QueryClientProvider>
+    </QueryProvider>
   );
 };

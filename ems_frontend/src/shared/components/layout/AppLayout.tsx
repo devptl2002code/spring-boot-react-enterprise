@@ -22,8 +22,8 @@ import {
   Menu as MenuIcon,
 } from "@mui/icons-material";
 import { Outlet, useNavigate, useLocation } from "react-router-dom";
-import { useAuth } from "@features/auth/hooks/useAuth";
-import { useThemeMode } from "@core/theme/ThemeContext";
+import { useAuth } from "@features/auth/useAuth";
+import { useThemeMode } from "@core/theme";
 import { useState } from "react";
 import { alpha, useTheme } from "@mui/material/styles";
 
@@ -292,7 +292,10 @@ export const AppLayout = () => {
           {/* Logout */}
           <Tooltip title={!open ? "Logout" : ""} placement="right" arrow>
             <ListItemButton
-              onClick={logout}
+              onClick={async () => {
+                await logout();
+                navigate("/login");
+              }}
               sx={{
                 borderRadius: "8px",
                 py: 1,

@@ -1,7 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
-import { LoginPage } from "@features/auth/pages/LoginPage";
-import { ProtectedRoute } from "@core/routes/ProtectedRoute";
-import { RoleGuard } from "@core/routes/RoleGuard";
+import { LoginPage } from "@features/auth/LoginPage";
+import { ProtectedRoute, RoleGuard } from "@core/routes";
 import { AppLayout } from "@shared/components/layout/AppLayout";
 import { UnauthorizedPage } from "@shared/components/UnauthorizedPage";
 import { NotFoundPage } from "@shared/components/NotFoundPage";

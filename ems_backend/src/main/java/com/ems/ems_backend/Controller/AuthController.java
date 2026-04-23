@@ -1,13 +1,16 @@
 package com.ems.ems_backend.Controller;
 
-import com.ems.ems_backend.Entity.Role;
 import com.ems.ems_backend.Entity.User;
-import com.ems.ems_backend.Security.JwtUtil;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import org.springframework.http.*;
+import org.springframework.security.authentication.*;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
+import org.springframework.security.web.context.SecurityContextRepository;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Map;
@@ -16,45 +19,61 @@ import java.util.Map;
 @RequestMapping("/api/auth")
 public class AuthController {
 
-    private final JwtUtil jwtUtil;
+    private final AuthenticationManager authenticationManager;
 
-    // In-memory users (username -> password)
-//    private final Map<String, String> users = Map.of(
-//            "admin", "admin123",
-//            "dev", "dev123",
-//            "hr", "hr123"
-//    );
-
-    private final Map<String, User> users = Map.of(
-            "admin", new User("admin", "admin123", Role.ADMIN),
-            "dev", new User("dev", "dev123", Role.DEV),
-            "hr", new User("hr", "hr123", Role.HR)
-    );
-
-    public AuthController(JwtUtil jwtUtil) {
-        this.jwtUtil = jwtUtil;
+    public AuthController(AuthenticationManager authenticationManager) {
+        this.authenticationManager = authenticationManager;
     }
 
+    // ✅ LOGIN
     @PostMapping("/login")
-    public Map<String, String> login(@RequestBody User request) {
+    public Map<String, String> login(@RequestBody User requestUser, HttpServletRequest request, HttpServletResponse response) {
 
-        User storedUser = users.get(request.getUsername());
+        try {
+            Authentication authentication = authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(
+                            requestUser.getUsername(),
+                            requestUser.getPassword()
+                    )
+            );
 
-        if (storedUser != null &&
-                storedUser.getPassword().equals(request.getPassword())) {
+            SecurityContextHolder.getContext().setAuthentication(authentication);
 
-            String token = jwtUtil.generateToken(storedUser);
+            // Create session and save context
+            HttpSession session = request.getSession(true);
+            SecurityContextRepository contextRepository = new HttpSessionSecurityContextRepository();
+            contextRepository.saveContext(SecurityContextHolder.getContext(), request, response);
 
             return Map.of(
-                    "token", token,
-                    "role", storedUser.getRole().name(),
-                    "username", storedUser.getUsername()
+                    "username", authentication.getName(),
+                    "role", authentication.getAuthorities().iterator().next().getAuthority().replace("ROLE_", "")
             );
+
+        } catch (BadCredentialsException ex) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Invalid Credentials");
+        }
+    }
+
+    // ✅ LOGOUT
+    @PostMapping("/logout")
+    public ResponseEntity<Void> logout(HttpServletRequest request) {
+
+        SecurityContextHolder.clearContext();
+
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            session.invalidate();
         }
 
-        throw new ResponseStatusException(
-                HttpStatus.UNAUTHORIZED,
-                "Invalid Credentials"
+        return ResponseEntity.ok().build();
+    }
+
+    // ✅ CURRENT USER
+    @GetMapping("/me")
+    public Map<String, String> me(Authentication authentication) {
+        return Map.of(
+                "username", authentication.getName(),
+                "role", authentication.getAuthorities().iterator().next().getAuthority().replace("ROLE_", "")
         );
     }
 }
