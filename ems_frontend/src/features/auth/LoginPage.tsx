@@ -53,9 +53,12 @@ export const LoginPage = () => {
       justifyContent="center"
       alignItems="center"
       height="100vh"
-      sx={{ bgcolor: "background.default" }}
+      sx={{
+        background:
+          "radial-gradient(circle at center, #285075 0%, #1a3a52 100%)",
+      }}
     >
-      <Card sx={{ width: 400, padding: 2 }}>
+      <Card sx={{ width: 400, padding: 2, boxShadow: 3 }}>
         <CardContent>
           <Typography variant="h5" mb={2} textAlign="center">
             EMS Login
