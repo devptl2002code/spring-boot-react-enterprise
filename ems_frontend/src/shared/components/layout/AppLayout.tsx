@@ -27,35 +27,41 @@ import { useThemeMode } from "@core/theme";
 import { useState } from "react";
 import { alpha, useTheme } from "@mui/material/styles";
 
-const DRAWER_OPEN_WIDTH   = 248;
+const DRAWER_OPEN_WIDTH = 248;
 const DRAWER_CLOSED_WIDTH = 68;
 
-const SLATE       = "#1e2a3a";
+const SLATE = "#1e2a3a";
 const SLATE_LIGHT = "#2e4057";
-const TEAL        = "#0ea5a0";
-const TEAL_LIGHT  = "#2cc8c3";
+const TEAL = "#0ea5a0";
+const TEAL_LIGHT = "#2cc8c3";
 const TEXT_BRIGHT = "#ffffff";
-const TEXT_MID    = "rgba(255,255,255,0.65)";
-const TEXT_DIM    = "rgba(255,255,255,0.38)";
-const DIVIDER     = "rgba(255,255,255,0.08)";
-const HOVER_BG    = "rgba(255,255,255,0.07)";
-const ACTIVE_BG   = "rgba(14,165,160,0.18)";
+const TEXT_MID = "rgba(255,255,255,0.65)";
+const TEXT_DIM = "rgba(255,255,255,0.38)";
+const DIVIDER = "rgba(255,255,255,0.08)";
+const HOVER_BG = "rgba(255,255,255,0.07)";
+const ACTIVE_BG = "rgba(14,165,160,0.18)";
 
 export const AppLayout = () => {
-  const navigate    = useNavigate();
-  const location    = useLocation();
+  const navigate = useNavigate();
+  const location = useLocation();
   const { user, logout } = useAuth();
   const { mode, toggleTheme } = useThemeMode();
-  const muiTheme    = useTheme();
-  const isLight     = mode === "light";
+  const muiTheme = useTheme();
+  const isLight = mode === "light";
 
-  const [collapsed, setCollapsed]   = useState(false);
+  const [collapsed, setCollapsed] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const navItems = [
     { label: "Dashboard", path: "/", icon: <Dashboard fontSize="small" /> },
     ...(user?.role === "ADMIN" || user?.role === "HR"
-      ? [{ label: "Employees", path: "/employees", icon: <People fontSize="small" /> }]
+      ? [
+          {
+            label: "Employees",
+            path: "/employees",
+            icon: <People fontSize="small" />,
+          },
+        ]
       : []),
   ];
 
@@ -122,7 +128,10 @@ export const AppLayout = () => {
           )}
 
           {!mobile && (
-            <Tooltip title={collapsed ? "Expand" : "Collapse"} placement="right">
+            <Tooltip
+              title={collapsed ? "Expand" : "Collapse"}
+              placement="right"
+            >
               <IconButton
                 onClick={() => setCollapsed((p) => !p)}
                 size="small"
@@ -132,12 +141,17 @@ export const AppLayout = () => {
                   borderRadius: "7px",
                   width: 28,
                   height: 28,
-                  "&:hover": { backgroundColor: "rgba(255,255,255,0.12)", color: TEXT_BRIGHT },
+                  "&:hover": {
+                    backgroundColor: "rgba(255,255,255,0.12)",
+                    color: TEXT_BRIGHT,
+                  },
                 }}
               >
-                {collapsed
-                  ? <ChevronRight sx={{ fontSize: 16 }} />
-                  : <ChevronLeft sx={{ fontSize: 16 }} />}
+                {collapsed ? (
+                  <ChevronRight sx={{ fontSize: 16 }} />
+                ) : (
+                  <ChevronLeft sx={{ fontSize: 16 }} />
+                )}
               </IconButton>
             </Tooltip>
           )}
@@ -177,7 +191,12 @@ export const AppLayout = () => {
           {navItems.map((item) => {
             const active = location.pathname === item.path;
             return (
-              <Tooltip key={item.path} title={!open ? item.label : ""} placement="right" arrow>
+              <Tooltip
+                key={item.path}
+                title={!open ? item.label : ""}
+                placement="right"
+                arrow
+              >
                 <ListItemButton
                   selected={active}
                   onClick={() => {
@@ -192,8 +211,12 @@ export const AppLayout = () => {
                     justifyContent: open ? "flex-start" : "center",
                     minHeight: 44,
                     color: active ? TEAL_LIGHT : TEXT_MID,
-                    backgroundColor: active ? `${ACTIVE_BG} !important` : "transparent",
-                    borderLeft: active ? `2px solid ${TEAL}` : "2px solid transparent",
+                    backgroundColor: active
+                      ? `${ACTIVE_BG} !important`
+                      : "transparent",
+                    borderLeft: active
+                      ? `2px solid ${TEAL}`
+                      : "2px solid transparent",
                     "&:hover": {
                       backgroundColor: `${HOVER_BG} !important`,
                       color: TEXT_BRIGHT,
@@ -241,8 +264,20 @@ export const AppLayout = () => {
         <Divider sx={{ borderColor: DIVIDER, mx: open ? 1.5 : 0.75 }} />
 
         {/* ── Bottom actions ───────────────────────────────────── */}
-        <Box sx={{ px: open ? 1.5 : 0.75, py: 1.5, display: "flex", flexDirection: "column", gap: 0.5 }}>
-          <Tooltip title={isLight ? "Switch to Dark" : "Switch to Light"} placement="right" arrow>
+        <Box
+          sx={{
+            px: open ? 1.5 : 0.75,
+            py: 1.5,
+            display: "flex",
+            flexDirection: "column",
+            gap: 0.5,
+          }}
+        >
+          <Tooltip
+            title={isLight ? "Switch to Dark" : "Switch to Light"}
+            placement="right"
+            arrow
+          >
             <ListItemButton
               onClick={toggleTheme}
               sx={{
@@ -257,13 +292,27 @@ export const AppLayout = () => {
                 transition: "all 0.15s",
               }}
             >
-              <ListItemIcon sx={{ minWidth: open ? 32 : "unset", color: TEXT_DIM, justifyContent: "center" }}>
-                {isLight ? <DarkMode sx={{ fontSize: 18 }} /> : <LightMode sx={{ fontSize: 18 }} />}
+              <ListItemIcon
+                sx={{
+                  minWidth: open ? 32 : "unset",
+                  color: TEXT_DIM,
+                  justifyContent: "center",
+                }}
+              >
+                {isLight ? (
+                  <DarkMode sx={{ fontSize: 18 }} />
+                ) : (
+                  <LightMode sx={{ fontSize: 18 }} />
+                )}
               </ListItemIcon>
               {open && (
                 <ListItemText
                   primary={isLight ? "Dark Mode" : "Light Mode"}
-                  primaryTypographyProps={{ fontSize: 14, fontFamily: '"Plus Jakarta Sans", sans-serif', noWrap: true }}
+                  primaryTypographyProps={{
+                    fontSize: 14,
+                    fontFamily: '"Plus Jakarta Sans", sans-serif',
+                    noWrap: true,
+                  }}
                 />
               )}
             </ListItemButton>
@@ -271,7 +320,10 @@ export const AppLayout = () => {
 
           <Tooltip title={!open ? "Logout" : ""} placement="right" arrow>
             <ListItemButton
-              onClick={async () => { await logout(); navigate("/login"); }}
+              onClick={async () => {
+                await logout();
+                navigate("/login");
+              }}
               sx={{
                 borderRadius: "8px",
                 py: 1,
@@ -288,13 +340,23 @@ export const AppLayout = () => {
                 transition: "all 0.15s",
               }}
             >
-              <ListItemIcon sx={{ minWidth: open ? 32 : "unset", color: TEXT_DIM, justifyContent: "center" }}>
+              <ListItemIcon
+                sx={{
+                  minWidth: open ? 32 : "unset",
+                  color: TEXT_DIM,
+                  justifyContent: "center",
+                }}
+              >
                 <Logout sx={{ fontSize: 18 }} />
               </ListItemIcon>
               {open && (
                 <ListItemText
                   primary="Logout"
-                  primaryTypographyProps={{ fontSize: 14, fontFamily: '"Plus Jakarta Sans", sans-serif', noWrap: true }}
+                  primaryTypographyProps={{
+                    fontSize: 14,
+                    fontFamily: '"Plus Jakarta Sans", sans-serif',
+                    noWrap: true,
+                  }}
                 />
               )}
             </ListItemButton>
@@ -348,7 +410,11 @@ export const AppLayout = () => {
                 </Typography>
                 <Typography
                   variant="caption"
-                  sx={{ color: TEXT_DIM, fontSize: 10, fontFamily: '"Plus Jakarta Sans", sans-serif' }}
+                  sx={{
+                    color: TEXT_DIM,
+                    fontSize: 10,
+                    fontFamily: '"Plus Jakarta Sans", sans-serif',
+                  }}
                 >
                   Active session
                 </Typography>
@@ -458,7 +524,10 @@ export const AppLayout = () => {
             fontWeight={700}
             color="text.primary"
             fontSize={14}
-            sx={{ fontFamily: '"Plus Jakarta Sans", sans-serif', letterSpacing: "-0.01em" }}
+            sx={{
+              fontFamily: '"Plus Jakarta Sans", sans-serif',
+              letterSpacing: "-0.01em",
+            }}
           >
             EMS Portal
           </Typography>

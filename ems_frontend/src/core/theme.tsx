@@ -1,4 +1,8 @@
-import { createTheme, PaletteMode, ThemeProvider as MuiThemeProvider } from "@mui/material";
+import {
+  createTheme,
+  PaletteMode,
+  ThemeProvider as MuiThemeProvider,
+} from "@mui/material";
 import { createContext, useContext, useMemo, useState, ReactNode } from "react";
 
 export const createAppTheme = (mode: PaletteMode) => {
@@ -8,28 +12,28 @@ export const createAppTheme = (mode: PaletteMode) => {
     palette: {
       mode,
       primary: {
-        main: "#1e2a3a",         // Deep slate — sidebar, headings
+        main: "#1e2a3a", // Deep slate — sidebar, headings
         light: "#2e4057",
         dark: "#111820",
         contrastText: "#ffffff",
       },
       secondary: {
-        main: "#0ea5a0",         // Crisp teal — CTA, active states
+        main: "#0ea5a0", // Crisp teal — CTA, active states
         light: "#2cc8c3",
         dark: "#0b8580",
         contrastText: "#ffffff",
       },
       background: {
-        default: isLight ? "#f7f8fa" : "#111820",   // Off-white / deep slate
-        paper:   isLight ? "#ffffff" : "#1a2333",
+        default: isLight ? "#f7f8fa" : "#111820", // Off-white / deep slate
+        paper: isLight ? "#ffffff" : "#1a2333",
       },
       text: {
-        primary:   isLight ? "#1e2a3a" : "#e8edf2",
+        primary: isLight ? "#1e2a3a" : "#e8edf2",
         secondary: isLight ? "#5a6a7a" : "#8a9bb0",
       },
       divider: isLight ? "#e4e8ed" : "#243040",
       grey: {
-        50:  "#f7f8fa",
+        50: "#f7f8fa",
         100: "#eef0f4",
         200: "#e4e8ed",
         300: "#cdd4dc",
@@ -44,14 +48,14 @@ export const createAppTheme = (mode: PaletteMode) => {
 
     typography: {
       fontFamily: '"Plus Jakarta Sans", "Inter", "Helvetica Neue", sans-serif',
-      h1: { fontSize: "2.5rem",  fontWeight: 700, letterSpacing: "-0.025em" },
-      h2: { fontSize: "2rem",    fontWeight: 700, letterSpacing: "-0.02em" },
+      h1: { fontSize: "2.5rem", fontWeight: 700, letterSpacing: "-0.025em" },
+      h2: { fontSize: "2rem", fontWeight: 700, letterSpacing: "-0.02em" },
       h3: { fontSize: "1.75rem", fontWeight: 600, letterSpacing: "-0.015em" },
-      h4: { fontSize: "1.5rem",  fontWeight: 600, letterSpacing: "-0.01em" },
+      h4: { fontSize: "1.5rem", fontWeight: 600, letterSpacing: "-0.01em" },
       h5: { fontSize: "1.25rem", fontWeight: 600 },
-      h6: { fontSize: "1.1rem",  fontWeight: 600 },
+      h6: { fontSize: "1.1rem", fontWeight: 600 },
       body1: { fontSize: "0.9375rem", lineHeight: 1.7 },
-      body2: { fontSize: "0.875rem",  lineHeight: 1.65 },
+      body2: { fontSize: "0.875rem", lineHeight: 1.65 },
       button: { fontWeight: 600, letterSpacing: "0.01em" },
       caption: { fontSize: "0.75rem", color: isLight ? "#5a6a7a" : "#8a9bb0" },
     },

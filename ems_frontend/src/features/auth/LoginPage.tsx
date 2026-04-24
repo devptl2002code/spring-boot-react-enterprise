@@ -16,14 +16,14 @@ import { useAuth } from "./useAuth";
 import { useNavigate } from "react-router-dom";
 
 const SLATE = "#1e2a3a";
-const TEAL  = "#0ea5a0";
+const TEAL = "#0ea5a0";
 
 export const LoginPage = () => {
-  const { login }   = useAuth();
-  const navigate    = useNavigate();
+  const { login } = useAuth();
+  const navigate = useNavigate();
   const { mutate, isPending, error } = useLogin();
 
-  const [form, setForm]             = useState({ username: "", password: "" });
+  const [form, setForm] = useState({ username: "", password: "" });
   const [showPassword, setShowPassword] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -32,7 +32,10 @@ export const LoginPage = () => {
 
   const handleSubmit = () => {
     mutate(form, {
-      onSuccess: (data) => { login(data); navigate("/"); },
+      onSuccess: (data) => {
+        login(data);
+        navigate("/");
+      },
     });
   };
 
@@ -128,11 +131,16 @@ export const LoginPage = () => {
             fontSize: "0.9375rem",
           }}
         >
-          Manage your workforce efficiently. Track attendance, performance, and more — all in one place.
+          Manage your workforce efficiently. Track attendance, performance, and
+          more — all in one place.
         </Typography>
 
         {/* Feature dots */}
-        {["Role-based access control", "Real-time dashboards", "Secure & reliable"].map((f) => (
+        {[
+          "Role-based access control",
+          "Real-time dashboards",
+          "Secure & reliable",
+        ].map((f) => (
           <Box key={f} display="flex" alignItems="center" gap={1.5} mt={2}>
             <Box
               sx={{
@@ -145,7 +153,10 @@ export const LoginPage = () => {
             />
             <Typography
               variant="body2"
-              sx={{ color: "#5a6a7a", fontFamily: '"Plus Jakarta Sans", sans-serif' }}
+              sx={{
+                color: "#5a6a7a",
+                fontFamily: '"Plus Jakarta Sans", sans-serif',
+              }}
             >
               {f}
             </Typography>
@@ -272,12 +283,17 @@ export const LoginPage = () => {
                     aria-label="toggle password visibility"
                     sx={{
                       color: "#a0adb8",
-                      "&:hover": { color: TEAL, backgroundColor: "rgba(14,165,160,0.07)" },
+                      "&:hover": {
+                        color: TEAL,
+                        backgroundColor: "rgba(14,165,160,0.07)",
+                      },
                     }}
                   >
-                    {showPassword
-                      ? <VisibilityOff sx={{ fontSize: 18 }} />
-                      : <Visibility sx={{ fontSize: 18 }} />}
+                    {showPassword ? (
+                      <VisibilityOff sx={{ fontSize: 18 }} />
+                    ) : (
+                      <Visibility sx={{ fontSize: 18 }} />
+                    )}
                   </IconButton>
                 </InputAdornment>
               ),
@@ -341,9 +357,11 @@ export const LoginPage = () => {
               },
             }}
           >
-            {isPending
-              ? <CircularProgress size={20} sx={{ color: "#fff" }} />
-              : "Sign In"}
+            {isPending ? (
+              <CircularProgress size={20} sx={{ color: "#fff" }} />
+            ) : (
+              "Sign In"
+            )}
           </Button>
 
           {/* Footer note */}
@@ -352,7 +370,10 @@ export const LoginPage = () => {
             display="block"
             textAlign="center"
             mt={2.5}
-            sx={{ color: "#a0adb8", fontFamily: '"Plus Jakarta Sans", sans-serif' }}
+            sx={{
+              color: "#a0adb8",
+              fontFamily: '"Plus Jakarta Sans", sans-serif',
+            }}
           >
             Protected by enterprise-grade security
           </Typography>

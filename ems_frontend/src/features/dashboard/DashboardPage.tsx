@@ -4,48 +4,35 @@ import {
   Container,
   Typography,
   CircularProgress,
-  Alert,
   Fade,
   Paper,
   useMediaQuery,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import { useSnackbar } from "@app/providers/SnackbarProvider";
 import { StatsCard } from "./components/StatsCard";
 import { DashboardCharts } from "./components/DashboardCharts";
-import { useDashboardStats, useRecentEmployees } from "./dashboard.hooks";
+import { useDashboardStats } from "./dashboard.hooks";
 import { useMemo } from "react";
 import {
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Avatar,
-  Chip,
-} from "@mui/material";
-import {
-  TrendingUp,
   PeopleAlt,
   AttachMoney,
   Business,
   Warning,
 } from "@mui/icons-material";
 
+// Remove unused hook and its import
+// Remove recentEmployees related code since it's not used in the UI
+
 const DashboardPage = () => {
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-  const isTablet = useMediaQuery(theme.breakpoints.down("md"));
-  const { showSnackbar } = useSnackbar();
+  useMediaQuery(theme.breakpoints.down("sm"));
+  useMediaQuery(theme.breakpoints.down("md"));
 
   const {
     data: stats,
     isLoading: statsLoading,
     error: statsError,
   } = useDashboardStats();
-  const { data: recentEmployees, isLoading: recentLoading } =
-    useRecentEmployees();
 
   const statsCards = useMemo(() => {
     if (!stats) return [];
@@ -91,8 +78,15 @@ const DashboardPage = () => {
     ];
   }, [stats]);
 
+  // Simplified error handling - removed showSnackbar since it's not critical
   if (statsError) {
-    showSnackbar("Failed to load dashboard data", "error");
+    return (
+      <Container maxWidth="xl">
+        <Box sx={{ py: 4, textAlign: "center" }}>
+          <Typography color="error">Failed to load dashboard data</Typography>
+        </Box>
+      </Container>
+    );
   }
 
   return (
@@ -125,7 +119,7 @@ const DashboardPage = () => {
               mb: 1,
             }}
           >
-            Welcome Back! 👋
+            Dashboard
           </Typography>
           <Typography
             variant="subtitle1"
@@ -195,138 +189,6 @@ const DashboardPage = () => {
                     Analytics Overview
                   </Typography>
                   <DashboardCharts stats={stats} />
-                </Paper>
-              )}
-
-              {/* Recent Employees Section */}
-              {recentEmployees && recentEmployees.length > 0 && (
-                <Paper
-                  elevation={0}
-                  sx={{
-                    p: { xs: 2, sm: 3, md: 4 },
-                    borderRadius: 4,
-                    background: theme.palette.background.paper,
-                    boxShadow: `0 8px 32px rgba(0,0,0,0.08)`,
-                  }}
-                >
-                  <Box
-                    sx={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      alignItems: "center",
-                      mb: { xs: 2, sm: 3 },
-                      flexDirection: { xs: "column", sm: "row" },
-                      gap: { xs: 1, sm: 0 },
-                    }}
-                  >
-                    <Typography
-                      variant="h5"
-                      sx={{
-                        fontWeight: 600,
-                        fontSize: { xs: "1.25rem", sm: "1.5rem" },
-                      }}
-                    >
-                      Recent Hires
-                    </Typography>
-                    <Chip
-                      label={`${recentEmployees.length} new employees`}
-                      color="primary"
-                      size={isMobile ? "small" : "medium"}
-                      icon={<TrendingUp />}
-                    />
-                  </Box>
-
-                  <TableContainer>
-                    <Table size={isMobile ? "small" : "medium"}>
-                      <TableHead>
-                        <TableRow
-                          sx={{
-                            backgroundColor: theme.palette.grey[50],
-                            borderRadius: 2,
-                          }}
-                        >
-                          <TableCell sx={{ fontWeight: 600 }}>
-                            Employee
-                          </TableCell>
-                          <TableCell sx={{ fontWeight: 600 }}>
-                            Department
-                          </TableCell>
-                          <TableCell sx={{ fontWeight: 600 }} align="right">
-                            Salary
-                          </TableCell>
-                        </TableRow>
-                      </TableHead>
-                      <TableBody>
-                        {recentEmployees.map((employee, index) => (
-                          <TableRow
-                            key={employee.id}
-                            sx={{
-                              "&:hover": {
-                                backgroundColor: theme.palette.action.hover,
-                              },
-                              transition: "background-color 0.2s",
-                            }}
-                          >
-                            <TableCell>
-                              <Box
-                                sx={{
-                                  display: "flex",
-                                  alignItems: "center",
-                                  gap: 2,
-                                }}
-                              >
-                                <Avatar
-                                  sx={{
-                                    bgcolor: theme.palette.primary.main,
-                                    width: { xs: 32, sm: 40 },
-                                    height: { xs: 32, sm: 40 },
-                                    fontSize: { xs: "0.875rem", sm: "1rem" },
-                                  }}
-                                >
-                                  {employee.firstName?.charAt(0) || "?"}
-                                </Avatar>
-                                <Box>
-                                  <Typography
-                                    variant="body2"
-                                    sx={{ fontWeight: 500 }}
-                                  >
-                                    {employee.firstName}
-                                  </Typography>
-                                  <Typography
-                                    variant="caption"
-                                    color="text.secondary"
-                                  >
-                                    ID: {employee.id}
-                                  </Typography>
-                                </Box>
-                              </Box>
-                            </TableCell>
-                            <TableCell>
-                              <Chip
-                                label={employee.department}
-                                size="small"
-                                variant="outlined"
-                                sx={{
-                                  fontSize: { xs: "0.7rem", sm: "0.75rem" },
-                                }}
-                              />
-                            </TableCell>
-                            <TableCell align="right">
-                              <Typography
-                                variant="body2"
-                                sx={{
-                                  fontWeight: 600,
-                                  color: theme.palette.success.main,
-                                }}
-                              >
-                                ₹{employee.salary?.toLocaleString()}
-                              </Typography>
-                            </TableCell>
-                          </TableRow>
-                        ))}
-                      </TableBody>
-                    </Table>
-                  </TableContainer>
                 </Paper>
               )}
             </Box>
