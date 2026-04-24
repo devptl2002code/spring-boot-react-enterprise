@@ -28,4 +28,8 @@ public class Employee {
     
     @Column(nullable = false)
     private Double salary;
+
+    private String documentUrl;
+
+    private String documentName;
 }

@@ -1,7 +1,8 @@
 import { Box, Typography, Avatar, Chip, Tooltip, IconButton } from "@mui/material";
 import { alpha } from "@mui/material/styles";
-import { Edit, Delete } from "@mui/icons-material";
-import { Employee } from "../employees.types";
+import { Edit, Delete, Download } from "@mui/icons-material";
+import { Employee } from "./employees.types";
+import { downloadEmployeeDocument } from "./employees.api";
 
 const DEPT_COLORS: Record<string, string> = {
   Engineering: "#3b82f6",
@@ -110,6 +111,50 @@ export const getEmployeeTableColumns = (isLight: boolean, handlers: ColumnHandle
     },
   },
   {
+    id: "document",
+    header: "Document",
+    size: 180,
+    cell: ({ row }: any) => {
+      const docName = row.original.documentName as string | null;
+      if (!docName) {
+        return (
+          <Typography variant="body2" color="text.secondary">
+            —
+          </Typography>
+        );
+      }
+      return (
+        <Box display="flex" alignItems="center" gap={1}>
+          <Typography
+            variant="body2"
+            color="text.primary"
+            sx={{
+              maxWidth: 120,
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+              whiteSpace: "nowrap",
+            }}
+            title={docName}
+          >
+            {docName}
+          </Typography>
+          <Tooltip title="Download">
+            <IconButton
+              size="small"
+              onClick={() => downloadEmployeeDocument(row.original.id, docName)}
+              sx={{
+                color: "text.secondary",
+                "&:hover": { color: "#285075", backgroundColor: alpha("#285075", 0.08) },
+              }}
+            >
+              <Download sx={{ fontSize: 16 }} />
+            </IconButton>
+          </Tooltip>
+        </Box>
+      );
+    },
+  },
+  {
     id: "actions",
     header: "Actions",
     size: 90,
@@ -143,3 +188,4 @@ export const getEmployeeTableColumns = (isLight: boolean, handlers: ColumnHandle
     ),
   },
 ];
+

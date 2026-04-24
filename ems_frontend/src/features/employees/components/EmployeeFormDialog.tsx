@@ -9,7 +9,7 @@ import {
   Grid,
   Button,
 } from "@mui/material";
-import { PersonAdd } from "@mui/icons-material";
+import { PersonAdd, CloudUpload, Clear } from "@mui/icons-material";
 import { Employee } from "../employees.types";
 
 interface EmployeeForm {
@@ -26,6 +26,8 @@ interface EmployeeFormDialogProps {
   editingEmployee: Employee | null;
   form: EmployeeForm;
   onFormChange: (form: EmployeeForm) => void;
+  documentFile: File | null;
+  onDocumentChange: (file: File | null) => void;
   onSubmit: () => void;
 }
 
@@ -35,11 +37,21 @@ export const EmployeeFormDialog = ({
   editingEmployee,
   form,
   onFormChange,
+  documentFile,
+  onDocumentChange,
   onSubmit,
 }: EmployeeFormDialogProps) => {
   const handleChange = (field: keyof EmployeeForm, value: string) => {
     onFormChange({ ...form, [field]: value });
   };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      onDocumentChange(e.target.files[0]);
+    }
+  };
+
+  const existingDocName = editingEmployee?.documentName;
 
   return (
     <Dialog open={open} onClose={onClose} fullWidth maxWidth="sm">
@@ -107,6 +119,64 @@ export const EmployeeFormDialog = ({
               onChange={(e) => handleChange("salary", e.target.value)}
             />
           </Grid>
+          <Grid item xs={12}>
+            <Box
+              sx={{
+                border: "2px dashed",
+                borderColor: "divider",
+                borderRadius: 2,
+                p: 2,
+                textAlign: "center",
+                cursor: "pointer",
+                transition: "border-color 0.2s",
+                "&:hover": {
+                  borderColor: "primary.main",
+                },
+              }}
+              component="label"
+            >
+              <input
+                type="file"
+                hidden
+                onChange={handleFileChange}
+                accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
+              />
+              {documentFile ? (
+                <Box display="flex" alignItems="center" justifyContent="center" gap={1}>
+                  <Typography variant="body2" color="text.primary" fontWeight={600}>
+                    {documentFile.name}
+                  </Typography>
+                  <Clear
+                    sx={{ fontSize: 16, cursor: "pointer", color: "text.secondary" }}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      onDocumentChange(null);
+                    }}
+                  />
+                </Box>
+              ) : existingDocName ? (
+                <Box display="flex" alignItems="center" justifyContent="center" gap={1}>
+                  <CloudUpload sx={{ fontSize: 20, color: "primary.main" }} />
+                  <Typography variant="body2" color="text.primary" fontWeight={600}>
+                    {existingDocName}
+                  </Typography>
+                  <Typography variant="caption" color="text.secondary" display="block">
+                    Click to replace document
+                  </Typography>
+                </Box>
+              ) : (
+                <>
+                  <CloudUpload sx={{ fontSize: 28, color: "primary.main", mb: 0.5 }} />
+                  <Typography variant="body2" color="text.primary" fontWeight={600}>
+                    Upload Document
+                  </Typography>
+                  <Typography variant="caption" color="text.secondary" display="block">
+                    PDF, DOC, DOCX, JPG, PNG (max 10MB)
+                  </Typography>
+                </>
+              )}
+            </Box>
+          </Grid>
         </Grid>
       </DialogContent>
 
@@ -121,3 +191,4 @@ export const EmployeeFormDialog = ({
     </Dialog>
   );
 };
+
