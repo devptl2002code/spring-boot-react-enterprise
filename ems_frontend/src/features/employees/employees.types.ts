@@ -5,6 +5,9 @@ export interface Employee {
   email: string;
   department: string | null;
   salary: number | null;
+  documentUrl?: string | null;
+  documentName?: string | null;
 }
 
 export type CreateEmployeeDto = Omit<Employee, "id">;
+

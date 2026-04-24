@@ -5,6 +5,7 @@ import {
   updateEmployee,
   deleteEmployee,
 } from "./employees.api";
+import { Employee } from "./employees.types";
 
 export const useEmployees = () => {
   return useQuery({
@@ -17,7 +18,8 @@ export const useCreateEmployee = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: createEmployee,
+    mutationFn: ({ data, document }: { data: Omit<Employee, "id">; document?: File | null }) =>
+      createEmployee(data, document),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["employees"] });
     },
@@ -28,7 +30,8 @@ export const useUpdateEmployee = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: updateEmployee,
+    mutationFn: ({ data, document }: { data: Employee; document?: File | null }) =>
+      updateEmployee(data, document),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["employees"] });
     },
@@ -45,3 +48,4 @@ export const useDeleteEmployee = () => {
     },
   });
 };
+

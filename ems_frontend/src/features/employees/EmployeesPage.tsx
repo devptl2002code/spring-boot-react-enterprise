@@ -36,6 +36,7 @@ export const EmployeesPage = () => {
     department: "",
     salary: "",
   });
+  const [documentFile, setDocumentFile] = useState<File | null>(null);
 
   // Table columns with handlers
   const columns = useMemo(
@@ -63,6 +64,7 @@ export const EmployeesPage = () => {
   const handleOpenAdd = () => {
     setEditingEmployee(null);
     setForm({ firstName: "", lastName: "", email: "", department: "", salary: "" });
+    setDocumentFile(null);
     setOpenForm(true);
   };
 
@@ -75,6 +77,7 @@ export const EmployeesPage = () => {
       department: emp.department ?? "",
       salary: emp.salary ? String(emp.salary) : "",
     });
+    setDocumentFile(null);
     setOpenForm(true);
   };
 
@@ -82,23 +85,28 @@ export const EmployeesPage = () => {
     const payload = { ...form, salary: form.salary ? Number(form.salary) : null };
     if (editingEmployee) {
       updateMutation.mutate(
-        { id: editingEmployee.id, ...payload },
+        { data: { id: editingEmployee.id, ...payload }, document: documentFile },
         {
           onSuccess: () => {
             showSnackbar("Employee updated successfully");
             setOpenForm(false);
+            setDocumentFile(null);
           },
           onError: () => showSnackbar("Update failed", "error"),
         }
       );
     } else {
-      createMutation.mutate(payload, {
-        onSuccess: () => {
-          showSnackbar("Employee created successfully");
-          setOpenForm(false);
-        },
-        onError: () => showSnackbar("Creation failed", "error"),
-      });
+      createMutation.mutate(
+        { data: payload, document: documentFile },
+        {
+          onSuccess: () => {
+            showSnackbar("Employee created successfully");
+            setOpenForm(false);
+            setDocumentFile(null);
+          },
+          onError: () => showSnackbar("Creation failed", "error"),
+        }
+      );
     }
   };
 
@@ -132,6 +140,8 @@ export const EmployeesPage = () => {
         editingEmployee={editingEmployee}
         form={form}
         onFormChange={setForm}
+        documentFile={documentFile}
+        onDocumentChange={setDocumentFile}
         onSubmit={handleFormSubmit}
       />
       <DeleteConfirmationDialog
@@ -142,3 +152,4 @@ export const EmployeesPage = () => {
     </Box>
   );
 };
+
